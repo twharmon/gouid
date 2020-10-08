@@ -17,9 +17,15 @@ func TestNew(t *testing.T) {
 	}
 }
 
-func BenchmarkNew6(b *testing.B) {
+func BenchmarkNew8(b *testing.B) {
 	for i := 0; i < b.N; i++ {
-		gouid.New(6)
+		gouid.New(8)
+	}
+}
+
+func BenchmarkNew16(b *testing.B) {
+	for i := 0; i < b.N; i++ {
+		gouid.New(16)
 	}
 }
 
