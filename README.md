@@ -33,7 +33,7 @@ func main() {
 ```
 BenchmarkNew8    	16570490	        70.0 ns/op	       8 B/op	       1 allocs/op
 BenchmarkNew16   	13006735	        92.5 ns/op	      16 B/op	       1 allocs/op
-BenchmarkNew32   	 8561425	       131 ns/op	      32 B/op	       1 allocs/op
+BenchmarkNew32   	 8561425	         131 ns/op	      32 B/op	       1 allocs/op
 ```
 
 ## Contribute
