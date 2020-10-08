@@ -7,17 +7,24 @@ import (
 )
 
 func TestNew(t *testing.T) {
-	id := gouid.New()
-	if len(id) != 32 {
+	length := 32
+	id := gouid.New(length)
+	if len(id) != length {
 		t.Error("lengh of id was not 32")
 	}
-	if id == gouid.New() {
+	if id == gouid.New(length) {
 		t.Error("collision")
 	}
 }
 
-func BenchmarkNew(b *testing.B) {
+func BenchmarkNew6(b *testing.B) {
 	for i := 0; i < b.N; i++ {
-		gouid.New()
+		gouid.New(6)
+	}
+}
+
+func BenchmarkNew32(b *testing.B) {
+	for i := 0; i < b.N; i++ {
+		gouid.New(32)
 	}
 }

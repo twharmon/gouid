@@ -2,14 +2,20 @@ package gouid
 
 import (
 	"crypto/rand"
-	"encoding/base32"
+	"unsafe"
 )
 
-// New returns a string with 32 characters. Ids are 20
-// cryptographically secure random bytes encoded with
-// standard base32 encoding.
-func New() string {
-	b := make([]byte, 20)
+var alphabet = []byte("abcdefghijklmnopqrstuvwxyz0123456789")
+
+// New returns a string with the given size. Ids are
+// made with cryptographically secure random bytes.
+func New(size int) string {
+	b := make([]byte, size)
 	rand.Read(b)
-	return base32.StdEncoding.EncodeToString(b)
+	for i := 0; i < size; i++ {
+		index := b[i] / 8
+		letter := alphabet[index]
+		b[i] = letter
+	}
+	return *(*string)(unsafe.Pointer(&b))
 }
