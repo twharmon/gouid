@@ -23,17 +23,23 @@ import (
 )
 
 func main() {
-	uid := gouid.New(10)
-	fmt.Println(uid) // mpln6nq37p
+	s := gouid.String(10)
+	fmt.Println(s) // mpln6nq37p
+
+	b := gouid.Bytes(16)
+	fmt.Println(b) // [244 188 217 137 122 245 94 126 80 119 87 170 6 178 228 179]
 }
 ```
 
 ## Benchmarks
 
 ```
-BenchmarkNew8    	16570490	        70.0 ns/op	       8 B/op	       1 allocs/op
-BenchmarkNew16   	13006735	        92.5 ns/op	      16 B/op	       1 allocs/op
-BenchmarkNew32   	 8561425	         131 ns/op	      32 B/op	       1 allocs/op
+BenchmarkString8 	        76.0 ns/op	       8 B/op	       1 allocs/op
+BenchmarkString16	         101 ns/op	      16 B/op	       1 allocs/op
+BenchmarkString32 	         143 ns/op	      32 B/op	       1 allocs/op
+BenchmarkBytes8  	        64.7 ns/op	       8 B/op	       1 allocs/op
+BenchmarkBytes16 	        80.9 ns/op	      16 B/op	       1 allocs/op
+BenchmarkBytes32 	         121 ns/op	      32 B/op	       1 allocs/op
 ```
 
 ## Contribute
