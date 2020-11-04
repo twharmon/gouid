@@ -2,6 +2,7 @@ package gouid_test
 
 import (
 	"bytes"
+	"encoding/json"
 	"testing"
 
 	"github.com/twharmon/gouid"
@@ -27,7 +28,33 @@ func TestBytes(t *testing.T) {
 	if bytes.Compare(id, gouid.Bytes(length)) == 0 {
 		t.Error("collision")
 	}
-	t.Fatal(id)
+}
+
+func TestBytesMarshal(t *testing.T) {
+	m := map[string]interface{}{
+		"id": gouid.GOUID([]byte{1}),
+	}
+	b, err := json.Marshal(m)
+	if err != nil {
+		t.Error(err)
+		t.FailNow()
+	}
+	want := `{"id":"01"}`
+	if string(b) != want {
+		t.Errorf("bad json marshal: %s != %s", string(b), want)
+	}
+}
+
+func TestBytesUnmarshal(t *testing.T) {
+	m := make(map[string]gouid.GOUID)
+	err := json.Unmarshal([]byte(`{"id":"01"}`), &m)
+	if err != nil {
+		t.Error(err)
+		t.FailNow()
+	}
+	if bytes.Compare(m["id"], []byte{1}) != 0 {
+		t.Errorf("bad json unmarshal: %v != %v", m["id"], []byte{1})
+	}
 }
 
 func BenchmarkString8(b *testing.B) {

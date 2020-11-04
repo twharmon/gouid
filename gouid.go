@@ -2,8 +2,13 @@ package gouid
 
 import (
 	"crypto/rand"
+	"encoding/hex"
+	"encoding/json"
 	"unsafe"
 )
+
+// GOUID is a byte slice.
+type GOUID []byte
 
 var alphabet = []byte("abcdefghijklmnopqrstuvwxyz0123456789")
 
@@ -20,8 +25,25 @@ func String(size int) string {
 }
 
 // Bytes returns cryptographically secure random bytes.
-func Bytes(size int) []byte {
+func Bytes(size int) GOUID {
 	b := make([]byte, size, size)
 	rand.Read(b)
 	return b
+}
+
+// MarshalJSON .
+func (g GOUID) MarshalJSON() ([]byte, error) {
+	return json.Marshal(hex.EncodeToString(g))
+}
+
+// UnmarshalJSON .
+func (g *GOUID) UnmarshalJSON(data []byte) error {
+	var x string
+	err := json.Unmarshal(data, &x)
+	if err == nil {
+		str, e := hex.DecodeString(x)
+		*g = GOUID([]byte(str))
+		err = e
+	}
+	return err
 }
