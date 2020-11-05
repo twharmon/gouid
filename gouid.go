@@ -31,12 +31,12 @@ func Bytes(size int) GOUID {
 	return b
 }
 
-// MarshalJSON .
+// MarshalJSON hex encodes the gouid.
 func (g GOUID) MarshalJSON() ([]byte, error) {
 	return json.Marshal(hex.EncodeToString(g))
 }
 
-// UnmarshalJSON .
+// UnmarshalJSON decodes a hex encoded string into a gouid.
 func (g *GOUID) UnmarshalJSON(data []byte) error {
 	var x string
 	err := json.Unmarshal(data, &x)
