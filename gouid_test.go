@@ -30,6 +30,16 @@ func TestBytes(t *testing.T) {
 	}
 }
 
+func TestByteArr16(t *testing.T) {
+	id := gouid.ByteArr16()
+	if len(id) != 16 {
+		t.Error("lengh of id was not 16")
+	}
+	if id == gouid.ByteArr16() {
+		t.Error("collision")
+	}
+}
+
 func TestBytesMarshal(t *testing.T) {
 	m := map[string]interface{}{
 		"id": gouid.GOUID([]byte{1}),
@@ -54,6 +64,35 @@ func TestBytesUnmarshal(t *testing.T) {
 	}
 	if bytes.Compare(m["id"], []byte{1}) != 0 {
 		t.Errorf("bad json unmarshal: %v != %v", m["id"], []byte{1})
+	}
+}
+
+func TestByteArr16Marshal(t *testing.T) {
+	m := map[string]interface{}{
+		"id": gouid.GOUID16([16]byte{1}),
+	}
+	b, err := json.Marshal(m)
+	if err != nil {
+		t.Error(err)
+		t.FailNow()
+	}
+	want := `{"id":"01000000000000000000000000000000"}`
+	if string(b) != want {
+		t.Errorf("bad json marshal: %s != %s", string(b), want)
+	}
+}
+
+func TestByteArr16Unmarshal(t *testing.T) {
+	m := make(map[string]gouid.GOUID16)
+	err := json.Unmarshal([]byte(`{"id":"01000000000000000000000000000000"}`), &m)
+	if err != nil {
+		t.Error(err)
+		t.FailNow()
+	}
+	a := m["id"]
+	b := [16]byte{1}
+	if bytes.Compare(a[:], b[:]) != 0 {
+		t.Errorf("bad json unmarshal: %v != %v", m["id"], [16]byte{1})
 	}
 }
 
