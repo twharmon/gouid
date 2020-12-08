@@ -2,8 +2,8 @@
 
 ![](https://github.com/twharmon/gouid/workflows/Test/badge.svg) [![](https://goreportcard.com/badge/github.com/twharmon/gouid)](https://goreportcard.com/report/github.com/twharmon/gouid) [![](https://gocover.io/_badge/github.com/twharmon/gouid)](https://gocover.io/github.com/twharmon/gouid)
 
-Use Gouid to create cryptographically secure random strings with just one allocation (see benchmarks below).
-Strings use a-z and 0-9 all lowercase.
+Use Gouid to create cryptographically secure random IDs. IDs can be byte slices or strings, both generated with just one allocation (see benchmarks below).
+Strings IDs use a-z and 0-9 all lowercase.
 
 
 ## Documentation
