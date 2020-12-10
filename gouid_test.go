@@ -125,6 +125,12 @@ func BenchmarkBytes16(b *testing.B) {
 	}
 }
 
+func BenchmarkByteArr16(b *testing.B) {
+	for i := 0; i < b.N; i++ {
+		gouid.ByteArr16()
+	}
+}
+
 func BenchmarkBytes32(b *testing.B) {
 	for i := 0; i < b.N; i++ {
 		gouid.Bytes(32)

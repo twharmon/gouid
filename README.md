@@ -28,6 +28,10 @@ func main() {
 
 	b := gouid.Bytes(16)
 	fmt.Println(b) // [244 188 217 137 122 245 94 126 80 119 87 170 6 178 228 179]
+
+
+	b := gouid.ByteArr16())
+	fmt.Println(b) // [244 188 217 137 122 245 94 126 80 119 87 170 6 178 228 179]
 }
 ```
 
@@ -39,6 +43,7 @@ BenchmarkString16	         101 ns/op	      16 B/op	       1 allocs/op
 BenchmarkString32 	         143 ns/op	      32 B/op	       1 allocs/op
 BenchmarkBytes8  	        64.7 ns/op	       8 B/op	       1 allocs/op
 BenchmarkBytes16 	        80.9 ns/op	      16 B/op	       1 allocs/op
+BenchmarkByteArr16 	        80.3 ns/op	      16 B/op	       1 allocs/op
 BenchmarkBytes32 	         121 ns/op	      32 B/op	       1 allocs/op
 ```
 

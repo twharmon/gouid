@@ -43,7 +43,12 @@ func ByteArr16() GOUID16 {
 
 // MarshalJSON hex encodes the gouid.
 func (g GOUID) MarshalJSON() ([]byte, error) {
-	return json.Marshal(hex.EncodeToString(g))
+	return json.Marshal(g.String())
+}
+
+// String implements the Stringer interface.
+func (g GOUID) String() string {
+	return hex.EncodeToString(g)
 }
 
 // UnmarshalJSON decodes a hex encoded string into a gouid.
@@ -60,7 +65,12 @@ func (g *GOUID) UnmarshalJSON(data []byte) error {
 
 // MarshalJSON hex encodes the gouid.
 func (g GOUID16) MarshalJSON() ([]byte, error) {
-	return json.Marshal(hex.EncodeToString(g[:]))
+	return json.Marshal(g.String())
+}
+
+// String implements the Stringer interface.
+func (g GOUID16) String() string {
+	return hex.EncodeToString(g[:])
 }
 
 // UnmarshalJSON decodes a hex encoded string into a gouid.
