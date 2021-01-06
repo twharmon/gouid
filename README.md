@@ -36,12 +36,12 @@ func main() {
 ## Benchmarks
 
 ```
-BenchmarkString8	 120 ns/op	       8 B/op	       1 allocs/op
-BenchmarkString16	 197 ns/op	      16 B/op	       1 allocs/op
-BenchmarkString32	 345 ns/op	      32 B/op	       1 allocs/op
-BenchmarkBytes8	     67.3 ns/op	       8 B/op	       1 allocs/op
-BenchmarkBytes16	 94.4 ns/op	      16 B/op	       1 allocs/op
-BenchmarkBytes32	 143 ns/op	      32 B/op	       1 allocs/op
+BenchmarkString8	120 ns/op	       8 B/op	       1 allocs/op
+BenchmarkString16	197 ns/op	      16 B/op	       1 allocs/op
+BenchmarkString32	345 ns/op	      32 B/op	       1 allocs/op
+BenchmarkBytes8	 	67.3 ns/op	       8 B/op	       1 allocs/op
+BenchmarkBytes16	94.4 ns/op	      16 B/op	       1 allocs/op
+BenchmarkBytes32	143 ns/op	      32 B/op	       1 allocs/op
 ```
 
 ## Contribute
