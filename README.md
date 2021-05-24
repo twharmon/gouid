@@ -22,14 +22,14 @@ import (
 )
 
 func main() {
-	s := gouid.String(8, gouid.LowerCaseAlphaNum)
-	fmt.Println(s) // mp6nq37p
+	a := gouid.String(8, gouid.LowerCaseAlphaNum)
+	fmt.Println(a) // mp6nq37p
 
-	s := gouid.String(16, gouid.MixedCaseAlpha)
-	fmt.Println(s) // hCSoemLKaUQtoXgh
+	b := gouid.String(16, gouid.MixedCaseAlpha)
+	fmt.Println(b) // hCSoemLKaUQtoXgh
 
-	b := gouid.Bytes(16)
-	fmt.Println(b) // [244 188 217 137 122 245 94 126 80 119 87 170 6 178 228 179]
+	c := gouid.Bytes(16)
+	fmt.Println(c) // [244 188 217 137 122 245 94 126 80 119 87 170 6 178 228 179]
 }
 ```
 
