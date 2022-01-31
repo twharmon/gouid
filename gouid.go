@@ -27,10 +27,9 @@ var (
 func String(size int, charset []byte) string {
 	b := make([]byte, size)
 	rand.Read(b)
+	charCnt := byte(len(charset))
 	for i := 0; i < size; i++ {
-		charCnt := len(charset)
-		index := (b[i] / byte(256/charCnt)) % byte(charCnt)
-		b[i] = charset[index]
+		b[i] = charset[b[i]%charCnt]
 	}
 	return *(*string)(unsafe.Pointer(&b))
 }
