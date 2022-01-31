@@ -20,15 +20,16 @@ var (
 	MixedCaseAlpha    = []byte("abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ")
 )
 
-// String returns a string with the given size. Ids are
-// made with cryptographically secure random bytes and
-// umatch /^[a-z0-9]$/.
+// String returns a string with the given size made up of
+// characters from the given charset. Ids are made with
+// cryptographically secure random bytes. The length of
+// charset must not exceed 256.
 func String(size int, charset []byte) string {
-	b := make([]byte, size, size)
+	b := make([]byte, size)
 	rand.Read(b)
 	for i := 0; i < size; i++ {
-		charCnt := byte(len(charset))
-		index := (b[i] / (255 / charCnt)) % charCnt
+		charCnt := len(charset)
+		index := (b[i] / byte(256/charCnt)) % byte(charCnt)
 		b[i] = charset[index]
 	}
 	return *(*string)(unsafe.Pointer(&b))
@@ -36,7 +37,7 @@ func String(size int, charset []byte) string {
 
 // Bytes returns cryptographically secure random bytes.
 func Bytes(size int) GOUID {
-	b := make([]byte, size, size)
+	b := make([]byte, size)
 	rand.Read(b)
 	return b
 }

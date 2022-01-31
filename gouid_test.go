@@ -69,7 +69,7 @@ func TestBytes(t *testing.T) {
 	if len(id) != length {
 		t.Error("lengh of id was not 16")
 	}
-	if bytes.Compare(id, gouid.Bytes(length)) == 0 {
+	if bytes.Equal(id, gouid.Bytes(length)) {
 		t.Error("collision")
 	}
 }
@@ -96,7 +96,7 @@ func TestBytesUnmarshal(t *testing.T) {
 		t.Error(err)
 		t.FailNow()
 	}
-	if bytes.Compare(m["id"], []byte{1}) != 0 {
+	if !bytes.Equal(m["id"], []byte{1}) {
 		t.Errorf("bad json unmarshal: %v != %v", m["id"], []byte{1})
 	}
 }
