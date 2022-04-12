@@ -1,4 +1,4 @@
-// Package guoid provides cryptographically secure unique identifiers \
+// Package guoid provides cryptographically secure unique identifiers
 // of type string and type []byte.
 //
 // On Linux, FreeBSD, Dragonfly and Solaris, getrandom(2) is used if
