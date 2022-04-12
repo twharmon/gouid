@@ -1,3 +1,12 @@
+// Package guoid provides cryptographically secure unique identifiers \
+// of type string and type []byte.
+//
+// On Linux, FreeBSD, Dragonfly and Solaris, getrandom(2) is used if
+// available, /dev/urandom otherwise.
+// On OpenBSD and macOS, getentropy(2) is used.
+// On other Unix-like systems, /dev/urandom is used.
+// On Windows systems, the RtlGenRandom API is used.
+// On Wasm, the Web Crypto API is used.
 package gouid
 
 import (
@@ -26,9 +35,9 @@ var (
 // charset must not exceed 256.
 func String(size int, charset []byte) string {
 	b := make([]byte, size)
-	rand.Read(b)
+	randBytes(b)
 	charCnt := byte(len(charset))
-	for i := 0; i < size; i++ {
+	for i := range b {
 		b[i] = charset[b[i]%charCnt]
 	}
 	return *(*string)(unsafe.Pointer(&b))
@@ -37,7 +46,7 @@ func String(size int, charset []byte) string {
 // Bytes returns cryptographically secure random bytes.
 func Bytes(size int) GOUID {
 	b := make([]byte, size)
-	rand.Read(b)
+	randBytes(b)
 	return b
 }
 
@@ -61,4 +70,14 @@ func (g *GOUID) UnmarshalJSON(data []byte) error {
 		err = e
 	}
 	return err
+}
+
+func randBytes(buf []byte) {
+	var n int
+	var err error
+	for n < len(buf) && err == nil {
+		var nn int
+		nn, err = rand.Reader.Read(buf[n:])
+		n += nn
+	}
 }

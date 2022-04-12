@@ -10,6 +10,13 @@ import (
 	"github.com/twharmon/gouid"
 )
 
+// BenchmarkString8-10     	 2466236	       475.0 ns/op	       8 B/op	       1 allocs/op
+// BenchmarkString16-10    	 2397400	       494.9 ns/op	      16 B/op	       1 allocs/op
+// BenchmarkString32-10    	 2246272	       534.4 ns/op	      32 B/op	       1 allocs/op
+// BenchmarkBytes8-10      	 2552016	       470.2 ns/op	       8 B/op	       1 allocs/op
+// BenchmarkBytes16-10     	 2472471	       483.4 ns/op	      16 B/op	       1 allocs/op
+// BenchmarkBytes32-10     	 2400997	       500.6 ns/op	      32 B/op	       1 allocs/op
+
 func TestString(t *testing.T) {
 	length := 32
 	id := gouid.String(length, gouid.MixedCaseAlphaNum)
