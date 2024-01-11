@@ -1,5 +1,5 @@
 # Gouid
-[![Go Reference](https://pkg.go.dev/badge/github.com/twharmon/gouid.svg)](https://pkg.go.dev/github.com/twharmon/gouid) ![](https://github.com/twharmon/gouid/workflows/Test/badge.svg) [![](https://goreportcard.com/badge/github.com/twharmon/gouid)](https://goreportcard.com/report/github.com/twharmon/gouid)  [![codecov](https://codecov.io/gh/twharmon/gouid/branch/main/graph/badge.svg?token=K0P59TPRAL)](https://codecov.io/gh/twharmon/gouid)
+[![Go Reference](https://pkg.go.dev/badge/github.com/twharmon/gouid.svg)](https://pkg.go.dev/github.com/twharmon/gouid) [![](https://goreportcard.com/badge/github.com/twharmon/gouid)](https://goreportcard.com/report/github.com/twharmon/gouid)  [![codecov](https://codecov.io/gh/twharmon/gouid/branch/main/graph/badge.svg?token=K0P59TPRAL)](https://codecov.io/gh/twharmon/gouid)
 
 Use Gouid to create cryptographically secure random IDs. IDs can be byte slices or strings, both generated with just one allocation (see benchmarks below).
 
