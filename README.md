@@ -21,11 +21,11 @@ import (
 )
 
 func main() {
-	a := gouid.String(8, gouid.LowerCaseAlphaNum)
-	fmt.Println(a) // mp6nq37p
+	a := gouid.String(8, gouid.Secure32Char)
+	fmt.Println(a) // mp1nq34p
 
-	b := gouid.String(16, gouid.MixedCaseAlpha)
-	fmt.Println(b) // hCSoemLKaUQtoXgh
+	b := gouid.String(16, gouid.Secure64Char)
+	fmt.Println(b) // h-SoemLKa_QtoXgh
 
 	c := gouid.Bytes(16)
 	fmt.Println(c) // [244 188 217 137 122 245 94 126 80 119 87 170 6 178 228 179]
@@ -35,12 +35,16 @@ func main() {
 ## Benchmarks
 
 ```
-BenchmarkString8	120 ns/op	       8 B/op	       1 allocs/op
-BenchmarkString16	197 ns/op	      16 B/op	       1 allocs/op
-BenchmarkString32	345 ns/op	      32 B/op	       1 allocs/op
-BenchmarkBytes8	 	67.3 ns/op	       8 B/op	       1 allocs/op
-BenchmarkBytes16	94.4 ns/op	      16 B/op	       1 allocs/op
-BenchmarkBytes32	143 ns/op	      32 B/op	       1 allocs/op
+goos: linux
+goarch: amd64
+pkg: github.com/twharmon/gouid
+cpu: AMD Ryzen 7 7840HS w/ Radeon 780M Graphics     
+BenchmarkString8     	 337.6 ns/op	       8 B/op	       1 allocs/op
+BenchmarkString16    	 359.1 ns/op	      16 B/op	       1 allocs/op
+BenchmarkString32    	 363.5 ns/op	      32 B/op	       1 allocs/op
+BenchmarkBytes8      	 327.0 ns/op	       8 B/op	       1 allocs/op
+BenchmarkBytes16     	 334.0 ns/op	      16 B/op	       1 allocs/op
+BenchmarkBytes32     	 334.7 ns/op	      32 B/op	       1 allocs/op
 ```
 
 ## Contribute

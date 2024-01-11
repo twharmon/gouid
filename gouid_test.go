@@ -19,53 +19,25 @@ import (
 
 func TestString(t *testing.T) {
 	length := 32
-	id := gouid.String(length, gouid.MixedCaseAlphaNum)
+	id := gouid.String(length, gouid.Secure64Char)
 	if len(id) != length {
 		t.Error("lengh of id was not 32")
 	}
-	if id == gouid.String(length, gouid.MixedCaseAlphaNum) {
+	if id == gouid.String(length, gouid.Secure64Char) {
 		t.Error("collision")
 	}
 }
 
-func TestStringLowerCaseAlpha(t *testing.T) {
+func TestStringSecure64Char(t *testing.T) {
 	length := 256
-	if !regexp.MustCompile(fmt.Sprintf("[a-z]{%d}", length)).Match([]byte(gouid.String(length, gouid.LowerCaseAlpha))) {
+	if !regexp.MustCompile(fmt.Sprintf("[a-zA-Z0-9-_]{%d}", length)).Match([]byte(gouid.String(length, gouid.Secure64Char))) {
 		t.Error("string did not match expected regexp")
 	}
 }
 
-func TestStringUpperCaseAlpha(t *testing.T) {
+func TestStringSecure32Char(t *testing.T) {
 	length := 256
-	if !regexp.MustCompile(fmt.Sprintf("[A-Z]{%d}", length)).Match([]byte(gouid.String(length, gouid.UpperCaseAlpha))) {
-		t.Error("string did not match expected regexp")
-	}
-}
-
-func TestStringMixedCaseAlpha(t *testing.T) {
-	length := 256
-	if !regexp.MustCompile(fmt.Sprintf("[a-zA-Z]{%d}", length)).Match([]byte(gouid.String(length, gouid.MixedCaseAlpha))) {
-		t.Error("string did not match expected regexp")
-	}
-}
-
-func TestStringLowerCaseAlphaNum(t *testing.T) {
-	length := 256
-	if !regexp.MustCompile(fmt.Sprintf("[a-z0-9]{%d}", length)).Match([]byte(gouid.String(length, gouid.LowerCaseAlphaNum))) {
-		t.Error("string did not match expected regexp")
-	}
-}
-
-func TestStringUpperCaseAlphaNum(t *testing.T) {
-	length := 256
-	if !regexp.MustCompile(fmt.Sprintf("[A-Z0-9]{%d}", length)).Match([]byte(gouid.String(length, gouid.UpperCaseAlphaNum))) {
-		t.Error("string did not match expected regexp")
-	}
-}
-
-func TestStringMixedCaseAlphaNum(t *testing.T) {
-	length := 256
-	if !regexp.MustCompile(fmt.Sprintf("[a-zA-Z0-9]{%d}", length)).Match([]byte(gouid.String(length, gouid.MixedCaseAlphaNum))) {
+	if !regexp.MustCompile(fmt.Sprintf("[a-z0-5]{%d}", length)).Match([]byte(gouid.String(length, gouid.Secure32Char))) {
 		t.Error("string did not match expected regexp")
 	}
 }
@@ -110,19 +82,19 @@ func TestBytesUnmarshal(t *testing.T) {
 
 func BenchmarkString8(b *testing.B) {
 	for i := 0; i < b.N; i++ {
-		gouid.String(8, gouid.MixedCaseAlphaNum)
+		gouid.String(8, gouid.Secure64Char)
 	}
 }
 
 func BenchmarkString16(b *testing.B) {
 	for i := 0; i < b.N; i++ {
-		gouid.String(16, gouid.MixedCaseAlphaNum)
+		gouid.String(16, gouid.Secure64Char)
 	}
 }
 
 func BenchmarkString32(b *testing.B) {
 	for i := 0; i < b.N; i++ {
-		gouid.String(32, gouid.MixedCaseAlphaNum)
+		gouid.String(32, gouid.Secure64Char)
 	}
 }
 func BenchmarkBytes8(b *testing.B) {
