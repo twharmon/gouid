@@ -21,12 +21,10 @@ type GOUID []byte
 
 // Charsets for string gouids.
 var (
-	LowerCaseAlphaNum = []byte("abcdefghijklmnopqrstuvwxyz0123456789")
-	UpperCaseAlphaNum = []byte("ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789")
-	MixedCaseAlphaNum = []byte("abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789")
-	LowerCaseAlpha    = []byte("abcdefghijklmnopqrstuvwxyz")
-	UpperCaseAlpha    = []byte("ABCDEFGHIJKLMNOPQRSTUVWXYZ")
-	MixedCaseAlpha    = []byte("abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ")
+	// Cryptographically secure charsets should include N characters,
+	// where N is a factor of 256 (2, 4, 8, 16, 32, 64, 128, 256)
+	Secure32Char = []byte("abcdefghijklmnopqrstuvwxyz012345")
+	Secure64Char = []byte("abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789_-")
 )
 
 // String returns a string with the given size made up of
